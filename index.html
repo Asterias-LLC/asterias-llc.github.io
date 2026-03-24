@@ -180,67 +180,6 @@
             font-size: 1rem;
         }
 
-        .contact-form {
-            display: flex;
-            flex-direction: column;
-            gap: 1.25rem;
-        }
-
-        .form-group label {
-            display: block;
-            font-size: 0.85rem;
-            font-weight: 500;
-            margin-bottom: 0.4rem;
-        }
-
-        .form-group input,
-        .form-group textarea {
-            width: 100%;
-            padding: 0.75rem 1rem;
-            border: 1px solid var(--color-border);
-            border-radius: 8px;
-            font-family: inherit;
-            font-size: 0.95rem;
-            background: var(--color-card);
-            color: var(--color-text);
-            transition: border-color 0.2s;
-            outline: none;
-        }
-
-        .form-group input:focus,
-        .form-group textarea:focus {
-            border-color: var(--color-accent);
-        }
-
-        .form-group textarea {
-            resize: vertical;
-            min-height: 120px;
-        }
-
-        .submit-btn {
-            align-self: flex-start;
-            padding: 0.75rem 2rem;
-            background: var(--color-accent);
-            color: #fff;
-            border: none;
-            border-radius: 8px;
-            font-family: inherit;
-            font-size: 0.95rem;
-            font-weight: 500;
-            cursor: pointer;
-            transition: background 0.2s;
-        }
-
-        .submit-btn:hover {
-            background: var(--color-accent-hover);
-        }
-
-        .form-status {
-            font-size: 0.9rem;
-            color: var(--color-accent);
-            display: none;
-        }
-
         /* Footer */
         footer {
             border-top: 1px solid var(--color-border);
@@ -307,56 +246,12 @@
     <section class="contact-section" id="contact">
         <h2>Get in touch</h2>
         <p>Have a project in mind? We'd love to hear about it.</p>
-        <form class="contact-form" action="https://formspree.io/f/xdapnoak" method="POST">
-            <div class="form-group">
-                <label for="name">Name</label>
-                <input type="text" id="name" name="name" required>
-            </div>
-            <div class="form-group">
-                <label for="email">Email</label>
-                <input type="email" id="email" name="email" required>
-            </div>
-            <div class="form-group">
-                <label for="message">Message</label>
-                <textarea id="message" name="message" required></textarea>
-            </div>
-            <button type="submit" class="submit-btn">Send message</button>
-            <div class="form-status" id="form-status">Thanks! We'll be in touch.</div>
-        </form>
+        <p style="margin-top: 1rem;"><a href="mailto:asteriasllc@proton.me" style="color: var(--color-accent); text-decoration: none; font-weight: 500;">asteriasllc@proton.me</a></p>
     </section>
 
     <footer>
         &copy; 2026 Asterias LLC. All rights reserved.
     </footer>
 
-    <script>
-        const form = document.querySelector('.contact-form');
-        form.addEventListener('submit', async (e) => {
-            e.preventDefault();
-            const btn = form.querySelector('.submit-btn');
-            btn.textContent = 'Sending...';
-            btn.disabled = true;
-            try {
-                const resp = await fetch(form.action, {
-                    method: 'POST',
-                    body: new FormData(form),
-                    headers: { 'Accept': 'application/json' }
-                });
-                if (resp.ok) {
-                    form.reset();
-                    document.getElementById('form-status').style.display = 'block';
-                    btn.textContent = 'Sent!';
-                } else {
-                    btn.textContent = 'Error — try again';
-                }
-            } catch {
-                btn.textContent = 'Error — try again';
-            }
-            setTimeout(() => {
-                btn.textContent = 'Send message';
-                btn.disabled = false;
-            }, 3000);
-        });
-    </script>
 </body>
 </html>
