@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Asterias Design — App Design Studio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --color-bg: #fafafa;
+            --color-text: #1a1a1a;
+            --color-text-muted: #6b6b6b;
+            --color-accent: #2a5a6b;
+            --color-accent-hover: #1e4450;
+            --color-border: #e0e0e0;
+            --color-card: #ffffff;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--color-bg);
+            color: var(--color-text);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Nav */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(250, 250, 250, 0.92);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--color-border);
+            z-index: 100;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.1rem;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            color: var(--color-text);
+            text-decoration: none;
+        }
+
+        .nav-links a {
+            color: var(--color-text-muted);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 400;
+            margin-left: 2rem;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: var(--color-text);
+        }
+
+        /* Hero */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 6rem 2rem 4rem;
+            max-width: 720px;
+            margin: 0 auto;
+        }
+
+        .hero-icon {
+            width: 64px;
+            height: 64px;
+            margin-bottom: 2rem;
+        }
+
+        .hero h1 {
+            font-size: clamp(2rem, 5vw, 3.2rem);
+            font-weight: 600;
+            letter-spacing: -0.03em;
+            line-height: 1.15;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero p {
+            font-size: 1.15rem;
+            color: var(--color-text-muted);
+            max-width: 520px;
+            line-height: 1.7;
+        }
+
+        /* Services */
+        .section {
+            padding: 6rem 2rem;
+            max-width: 960px;
+            margin: 0 auto;
+        }
+
+        .section-label {
+            font-size: 0.8rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--color-accent);
+            margin-bottom: 1rem;
+        }
+
+        .section h2 {
+            font-size: 1.8rem;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            margin-bottom: 3rem;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .service-card {
+            background: var(--color-card);
+            border: 1px solid var(--color-border);
+            border-radius: 12px;
+            padding: 2rem;
+            transition: border-color 0.2s;
+        }
+
+        .service-card:hover {
+            border-color: var(--color-accent);
+        }
+
+        .service-card h3 {
+            font-size: 1.05rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .service-card p {
+            font-size: 0.9rem;
+            color: var(--color-text-muted);
+            line-height: 1.6;
+        }
+
+        /* Contact */
+        .contact-section {
+            padding: 6rem 2rem;
+            max-width: 560px;
+            margin: 0 auto;
+        }
+
+        .contact-section h2 {
+            font-size: 1.8rem;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            margin-bottom: 0.75rem;
+        }
+
+        .contact-section > p {
+            color: var(--color-text-muted);
+            margin-bottom: 2.5rem;
+            font-size: 1rem;
+        }
+
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.25rem;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.85rem;
+            font-weight: 500;
+            margin-bottom: 0.4rem;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 1px solid var(--color-border);
+            border-radius: 8px;
+            font-family: inherit;
+            font-size: 0.95rem;
+            background: var(--color-card);
+            color: var(--color-text);
+            transition: border-color 0.2s;
+            outline: none;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            border-color: var(--color-accent);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .submit-btn {
+            align-self: flex-start;
+            padding: 0.75rem 2rem;
+            background: var(--color-accent);
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            font-family: inherit;
+            font-size: 0.95rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .submit-btn:hover {
+            background: var(--color-accent-hover);
+        }
+
+        .form-status {
+            font-size: 0.9rem;
+            color: var(--color-accent);
+            display: none;
+        }
+
+        /* Footer */
+        footer {
+            border-top: 1px solid var(--color-border);
+            padding: 2rem;
+            text-align: center;
+            font-size: 0.8rem;
+            color: var(--color-text-muted);
+        }
+
+        /* Mobile */
+        @media (max-width: 600px) {
+            nav {
+                padding: 0.85rem 1.25rem;
+            }
+            .nav-links a {
+                margin-left: 1.25rem;
+            }
+            .hero {
+                padding: 5rem 1.5rem 3rem;
+            }
+            .section, .contact-section {
+                padding: 4rem 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="#" class="logo">Asterias Design</a>
+        <div class="nav-links">
+            <a href="#work">Work</a>
+            <a href="#contact">Contact</a>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <svg class="hero-icon" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="32" cy="32" r="30" stroke="#2a5a6b" stroke-width="2"/>
+            <path d="M32 12 L36 28 L52 32 L36 36 L32 52 L28 36 L12 32 L28 28 Z" fill="#2a5a6b" opacity="0.15" stroke="#2a5a6b" stroke-width="1.5" stroke-linejoin="round"/>
+        </svg>
+        <h1>We design apps people love to use.</h1>
+        <p>Asterias Design is a Portland-based studio focused on crafting intuitive, beautiful mobile and web applications.</p>
+    </section>
+
+    <section class="section" id="work">
+        <div class="section-label">What we do</div>
+        <h2>Design that works.</h2>
+        <div class="services-grid">
+            <div class="service-card">
+                <h3>Product Design</h3>
+                <p>End-to-end app design from concept through launch. User research, wireframing, prototyping, and polished interfaces.</p>
+            </div>
+            <div class="service-card">
+                <h3>UI/UX Design</h3>
+                <p>Clean, accessible interfaces built around how people actually use software. iOS, Android, and web.</p>
+            </div>
+            <div class="service-card">
+                <h3>App Development</h3>
+                <p>We build what we design. Native and cross-platform development with attention to performance and detail.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="contact-section" id="contact">
+        <h2>Get in touch</h2>
+        <p>Have a project in mind? We'd love to hear about it.</p>
+        <form class="contact-form" action="https://formspree.io/f/xdapnoak" method="POST">
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="message">Message</label>
+                <textarea id="message" name="message" required></textarea>
+            </div>
+            <button type="submit" class="submit-btn">Send message</button>
+            <div class="form-status" id="form-status">Thanks! We'll be in touch.</div>
+        </form>
+    </section>
+
+    <footer>
+        &copy; 2026 Asterias LLC. All rights reserved.
+    </footer>
+
+    <script>
+        const form = document.querySelector('.contact-form');
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const btn = form.querySelector('.submit-btn');
+            btn.textContent = 'Sending...';
+            btn.disabled = true;
+            try {
+                const resp = await fetch(form.action, {
+                    method: 'POST',
+                    body: new FormData(form),
+                    headers: { 'Accept': 'application/json' }
+                });
+                if (resp.ok) {
+                    form.reset();
+                    document.getElementById('form-status').style.display = 'block';
+                    btn.textContent = 'Sent!';
+                } else {
+                    btn.textContent = 'Error — try again';
+                }
+            } catch {
+                btn.textContent = 'Error — try again';
+            }
+            setTimeout(() => {
+                btn.textContent = 'Send message';
+                btn.disabled = false;
+            }, 3000);
+        });
+    </script>
+</body>
+</html>
